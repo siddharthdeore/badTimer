@@ -2,7 +2,6 @@
    Freescale MK20D running at 72Mhz
 
 */
-#include<Servo.h>
 
 #define pin_input_1 2
 #define pin_input_2 3
