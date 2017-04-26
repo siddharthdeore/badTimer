@@ -2,6 +2,8 @@
    Freescale MK20D running at 72Mhz
 
 */
+#include<Servo.h>
+
 #define pin_input_1 2
 #define pin_input_2 3
 
@@ -10,10 +12,11 @@
 #define pin_output_1 10
 #define pin_output_2 11
 
+
 uint32_t time_loop;
 uint32_t pwm_in[2];
 uint32_t pwm_out[2];
-volatile uint32_t _pwm1, _pwm2;
+volatile uint32_t _pwm1, _pwm2, ap_time, ap_time;
 boolean state;
 void setup()
 {
@@ -29,9 +32,6 @@ void setup()
   pinMode(pin_output_2, OUTPUT);
 
   pinMode(pin_led, OUTPUT);
-
-  M1.attach(pin_output_2, 900, 2000)
-  M2.attach(pin_output_2, 900, 2000)
 }
 void loop()
 {
@@ -42,8 +42,8 @@ void loop()
     pwm_in[0] = pwm_1; //update values at 50 hz
     pwm_in[1] = pwm_2;
 
-    pwm_out[0] = pwm_in[0] > 2000000 ? 900 : pwm_in[0]; // Limit the pulse width to 2 seconds
-    pwm_out[1] = pwm_in[1] > 2000000 ? 900 : pwm_in[1];
+    pwm_out[0] = (pwm_in[0] > 2000000) || (pwm_in[0] < 900) ? 900 : pwm_in[0]; // Limit the pulse width to 2 seconds
+    pwm_out[1] = (pwm_in[1] > 2000000) || (pwm_in[1] < 900) ? 900 : pwm_in[1];
 
     digitalWrite(pin_output_1, HIGH);
     digitalWrite(pin_output_2, HIGH);
