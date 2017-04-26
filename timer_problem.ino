@@ -1,6 +1,6 @@
 /* Development Board : Teensy 3.2
- * Freescale MK20D running at 72Mhz
- *
+   Freescale MK20D running at 72Mhz
+
 */
 #include<Servo.h>
 
@@ -45,12 +45,26 @@ void loop()
 
     pwm_in[0] = pwm_1; //update values at 50 hz
     pwm_in[1] = pwm_2;
-    
+
     pwm_out[0] = pwm_in[0] > 2000000 ? 900 : pwm_in[0]; // Limit the pulse width to 2 seconds
     pwm_out[1] = pwm_in[1] > 2000000 ? 900 : pwm_in[1];
 
-    M1.writeMicroseconds(pwm_out[0]);
-    M2.writeMicroseconds(pwm_out[1]);
+    digitalWrite(pin_output_1, HIGH);
+    digitalWrite(pin_output_2, HIGH);
+    if (pwm_out[0] < pwm_out[1])
+    {
+      delayMicroseconds(pwm_out[0]);
+      digitalWrite(pin_output_1, LOW);
+      delayMicroseconds(pwm_out[1] - pwm_out[0]);
+      digitalWrite(pin_output_2, LOW);
+    }
+    else
+    {
+      delayMicroseconds(pwm_out[1]);
+      digitalWrite(pin_output_2, LOW);
+      delayMicroseconds(pwm_out[0] - pwm_out[1]);
+      digitalWrite(pin_output_1, LOW);
+    }
 
     time_loop = micros();
     count++;
