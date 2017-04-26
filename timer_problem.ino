@@ -1,12 +1,16 @@
+/* Development Board : Teensy 3.2
+ * Freescale MK20D running at 72Mhz
+ *
+*/
 #include<Servo.h>
 
-#define pin_input_1 8
-#define pin_input_2 9
+#define pin_input_1 2
+#define pin_input_2 3
 
 #define pin_led 13
 
-#define pin_output_1 2
-#define pin_output_2 3
+#define pin_output_1 10
+#define pin_output_2 11
 
 Servo M1, M2;
 
