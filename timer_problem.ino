@@ -44,8 +44,9 @@ void loop()
   {
 
     pwm_in[0] = pwm_1; //update values at 50 hz
-
-    pwm_out[0] = pwm_in[0] > 2000000 ? 900 : pwm_in[0];
+    pwm_in[1] = pwm_2;
+    
+    pwm_out[0] = pwm_in[0] > 2000000 ? 900 : pwm_in[0]; // Limit the pulse width to 2 seconds
     pwm_out[1] = pwm_in[1] > 2000000 ? 900 : pwm_in[1];
 
     M1.writeMicroseconds(pwm_out[0]);
