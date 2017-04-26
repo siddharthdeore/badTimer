@@ -17,7 +17,7 @@ Servo M1, M2;
 uint32_t time_loop;
 uint32_t pwm_in[2];
 uint32_t pwm_out[2];
-uint32_t _pwm1, _pwm2;
+volatile uint32_t _pwm1, _pwm2;
 boolean state;
 void setup()
 {
