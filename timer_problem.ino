@@ -35,12 +35,15 @@ void setup()
   pinMode(pin_output_2, OUTPUT);
 
   pinMode(pin_led, OUTPUT);
+  Serial.begin(115200);
 }
 void loop()
 {
   /* 50Hz Looptime */
   if ((micros() - time_loop) > 20000)
   {
+    Serial.print(1000000 / (micros() - time_loop));    Serial.println(" Hz");
+
     pwm_in[0] = _pwm1;
     pwm_in[1] = _pwm2;
 
@@ -70,6 +73,7 @@ void loop()
     count++;
     if (count == 5)
     {
+      Serial.print(200000 / (micros() - time_loop));    Serial.println(" Hz Blinking");
       count = 0;
       state != state;
       digitalWrite(pin_led, state); //  Blinks LED at 10HZ
@@ -82,12 +86,19 @@ void loop()
     if (digitalRead(pin_input_1))
       _dead1 = micros();
     else if ((micros() - _dead1) > 2000000) // if input is dead for more than 2 seconds write 0.9ms to output
+    {
       _pwm1 = 900;
+      Serial.println("input 1 is dead");
+    }
 
     if (digitalRead(pin_input_2))
       _dead2 = micros();
     else if ((micros() - _dead2) > 2000000)// if input is dead for more than 2 seconds write 0.9ms to output
+    {
       _pwm2 = 900;
+      Serial.println("input 1 is dead");
+    }
+
   }
 }
 
