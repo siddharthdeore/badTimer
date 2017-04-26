@@ -2,8 +2,6 @@
    Freescale MK20D running at 72Mhz
 
 */
-#include<Servo.h>
-
 #define pin_input_1 2
 #define pin_input_2 3
 
@@ -11,8 +9,6 @@
 
 #define pin_output_1 10
 #define pin_output_2 11
-
-Servo M1, M2;
 
 uint32_t time_loop;
 uint32_t pwm_in[2];
