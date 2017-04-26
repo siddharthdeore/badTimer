@@ -15,7 +15,7 @@
 uint32_t time_loop;
 uint32_t pwm_in[2];
 uint32_t pwm_out[2];
-volatile uint32_t _pwm1, _pwm2, ap_time, ap_time;
+volatile uint32_t _pwm1, _pwm2, ap_time, bp_time;
 boolean state;
 void setup()
 {
